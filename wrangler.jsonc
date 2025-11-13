@@ -5,17 +5,50 @@
   "pages_build_output_dir": "./dist",
   "compatibility_flags": ["nodejs_compat"],
   
-  // D1 Database for SNS data storage
+  // Default D1 Database (Development)
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "sns-report-production",
-      "database_id": "325c11c2-d5a1-4852-befa-9aaf9bb19d95"
+      "database_name": "sns-report-development",
+      "database_id": "013f8309-e293-48b6-b9dc-ddd6dbf9a870"
     }
   ],
   
-  // Environment variables (set via wrangler secret)
+  // Default environment variables
   "vars": {
-    "ADMIN_PASSWORD": "demo123" // Default for local dev, override in production
+    "ADMIN_PASSWORD": "demo123",
+    "ENVIRONMENT": "development"
+  },
+  
+  // Environment-specific configurations
+  "env": {
+    // Production environment
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "sns-report-production",
+          "database_id": "325c11c2-d5a1-4852-befa-9aaf9bb19d95"
+        }
+      ],
+      "vars": {
+        "ENVIRONMENT": "production"
+      }
+    },
+    
+    // Staging environment (optional)
+    "staging": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "sns-report-development",
+          "database_id": "013f8309-e293-48b6-b9dc-ddd6dbf9a870"
+        }
+      ],
+      "vars": {
+        "ADMIN_PASSWORD": "staging123",
+        "ENVIRONMENT": "staging"
+      }
+    }
   }
 }

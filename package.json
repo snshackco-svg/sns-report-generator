@@ -6,12 +6,29 @@
     "dev:sandbox": "wrangler pages dev dist --d1=sns-report-production --local --ip 0.0.0.0 --port 3000",
     "build": "vite build",
     "preview": "wrangler pages dev dist",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name sns-report-generator",
+    
+    "deploy:dev": "bash ./scripts/deploy-development.sh",
+    "deploy:prod": "bash ./scripts/deploy-production.sh",
+    "deploy": "npm run deploy:prod",
+    
+    "backup:prod": "bash ./scripts/backup-production.sh",
+    
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    
     "db:migrate:local": "wrangler d1 migrations apply sns-report-production --local",
-    "db:migrate:prod": "wrangler d1 migrations apply sns-report-production",
-    "db:seed": "wrangler d1 execute sns-report-production --local --file=./seed.sql",
-    "db:reset": "rm -rf .wrangler/state/v3/d1 && npm run db:migrate:local && npm run db:seed",
+    "db:migrate:dev": "wrangler d1 migrations apply sns-report-development --remote",
+    "db:migrate:prod": "wrangler d1 migrations apply sns-report-production --remote",
+    
+    "db:seed:local": "wrangler d1 execute sns-report-production --local --file=./seed.sql",
+    "db:seed:dev": "wrangler d1 execute sns-report-development --remote --file=./seed.sql",
+    "db:seed:prod": "wrangler d1 execute sns-report-production --remote --file=./seed.sql",
+    
+    "db:console:local": "wrangler d1 execute sns-report-production --local",
+    "db:console:dev": "wrangler d1 execute sns-report-development --remote",
+    "db:console:prod": "wrangler d1 execute sns-report-production --remote",
+    
+    "db:reset:local": "rm -rf .wrangler/state/v3/d1 && npm run db:migrate:local && npm run db:seed:local",
+    
     "clean-port": "fuser -k 3000/tcp 2>/dev/null || true",
     "git:commit": "git add . && git commit -m"
   },

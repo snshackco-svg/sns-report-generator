@@ -4,9 +4,27 @@
 
 ## 🌐 アクセスURL
 
-- **本番環境（Cloudflare Pages）**: https://sns-report-generator.pages.dev
-- **開発環境**: https://3000-i64kqcilnxyxv9s1t23tz-cc2fbc16.sandbox.novita.ai
+- **本番環境**: https://sns-report-generator.pages.dev
+- **開発環境**: https://development.sns-report-generator.pages.dev
+- **ローカル開発**: https://3000-i64kqcilnxyxv9s1t23tz-cc2fbc16.sandbox.novita.ai
 - **GitHub**: https://github.com/snshackco-svg/sns-report-generator
+
+## 🏗️ 環境構成
+
+このプロジェクトは **開発環境と本番環境を完全分離** しており、本番データを保護しながら安全に開発できます。
+
+| 環境 | データベース | 用途 |
+|------|-------------|------|
+| **Local** | SQLite (ローカル) | ローカル開発 |
+| **Development** | sns-report-development | 新機能のテスト |
+| **Production** | sns-report-production | 本番運用（顧客データ） |
+
+### 安全なデプロイフロー
+
+1. **開発環境でテスト**: `npm run deploy:dev`
+2. **本番環境へデプロイ**: `npm run deploy:prod`（自動バックアップ付き）
+
+詳細は [DEPLOYMENT.md](./DEPLOYMENT.md) を参照してください。
 
 ## 🎯 プロジェクト概要
 
@@ -21,6 +39,7 @@
 
 ### 完了済み機能 ✅
 
+**コア機能:**
 - [x] パスワード認証システム
 - [x] クライアント管理（作成・編集・削除）
 - [x] CSVアップロード機能
@@ -28,15 +47,26 @@
 - [x] データ正規化・クレンジング
 - [x] 日付パース（複数フォーマット対応、Asia/Tokyoタイムゾーン）
 - [x] ISO週番号計算（月曜始まり）
+
+**分析機能:**
 - [x] 統計API（月次・週次・期間指定・トレンド）
 - [x] トップ投稿ランキング（任意指標でソート可能）
 - [x] KPI設定・管理API
 - [x] KPI進捗計算（達成率・先週比）
 - [x] カスタムKPI（数式ビルダー対応）
+
+**レポート機能:**
 - [x] レポート自動生成（月次クライアント向け・週次社内向け）
 - [x] Markdown/HTML出力
 - [x] アップロード履歴管理
 - [x] データ品質ログ（欠損・除外理由記録）
+
+**運用機能（NEW）:**
+- [x] 開発環境・本番環境の完全分離
+- [x] 自動バックアップシステム
+- [x] 安全なマイグレーション管理
+- [x] デプロイ自動化スクリプト
+- [x] データ保護機能（既存データ削除防止）
 
 ### 未実装機能 ⏳
 
