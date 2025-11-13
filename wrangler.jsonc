@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sns-report-generator",
+  "main": "src/index.tsx",
+  "compatibility_date": "2025-11-13",
+  "pages_build_output_dir": "./dist",
+  "compatibility_flags": ["nodejs_compat"],
+  
+  // D1 Database for SNS data storage
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sns-report-production",
+      "database_id": "" // Will be filled after creating the database
+    }
+  ],
+  
+  // Environment variables (set via wrangler secret)
+  "vars": {
+    "ADMIN_PASSWORD": "demo123" // Default for local dev, override in production
+  }
+}
