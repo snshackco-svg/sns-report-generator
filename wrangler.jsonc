@@ -11,7 +11,7 @@
     {
       "binding": "DB",
       "database_name": "sns-report-production",
-      "database_id": "" // Will be filled after creating the database
+      "database_id": "00000000-0000-0000-0000-000000000000"
     }
   ],
   
