@@ -1,7 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sns-report-generator",
-  "main": "src/index.tsx",
   "compatibility_date": "2025-11-13",
   "pages_build_output_dir": "./dist",
   "compatibility_flags": ["nodejs_compat"],
@@ -11,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "sns-report-production",
-      "database_id": "00000000-0000-0000-0000-000000000000"
+      "database_id": "325c11c2-d5a1-4852-befa-9aaf9bb19d95"
     }
   ],
   
