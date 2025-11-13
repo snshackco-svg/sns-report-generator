@@ -4,6 +4,7 @@
 
 ## 🌐 アクセスURL
 
+- **本番環境（Cloudflare Pages）**: https://sns-report-generator.pages.dev
 - **開発環境**: https://3000-i64kqcilnxyxv9s1t23tz-cc2fbc16.sandbox.novita.ai
 - **GitHub**: https://github.com/snshackco-svg/sns-report-generator
 
